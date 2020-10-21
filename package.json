@@ -1,5 +1,5 @@
 {
-  "name": "react-data-grid",
+  "name": "react-data-grid-6-revision",
   "private": true,
   "description": "Data grid for React",
   "main": "src/index.js",
@@ -20,7 +20,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/adazzle/react-data-grid.git"
+    "url": "git://github.com/dlrandy/react-data-grid.git"
   },
   "keywords": [
     "react",
@@ -91,10 +91,10 @@
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^1.16.2"
   },
-  "author": "adazzle",
+  "author": "dlrandy",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/adazzle/react-data-grid/issues"
+    "url": "https://github.com/dlrandy/react-data-grid/issues"
   },
-  "homepage": "https://github.com/adazzle/react-data-grid"
+  "homepage": "https://github.com/dlrandy/react-data-grid"
 }

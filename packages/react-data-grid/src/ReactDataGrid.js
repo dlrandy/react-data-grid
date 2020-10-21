@@ -247,7 +247,7 @@ class ReactDataGrid extends React.Component {
   constructor(props, context) {
     super(props, context);
     const columnMetrics = this.createColumnMetrics();
-    const initialState = { columnMetrics, selectedRows: [], expandedRows: [], canFilter: false, columnFilters: {}, sortDirection: null, sortColumn: null, scrollOffset: 0, lastRowIdxUiSelected: -1 };
+    const initialState = { columnMetrics, selectedRows: [], expandedRows: [], canFilter: false, columnFilters: {}, sortDirection: null, sortColumn: null, scrollOffset: 0, lastRowIdxUiSelected: -1, areCellsSelected: false };
     if (this.props.sortColumn && this.props.sortDirection) {
       initialState.sortColumn = this.props.sortColumn;
       initialState.sortDirection = this.props.sortDirection;
@@ -261,7 +261,8 @@ class ReactDataGrid extends React.Component {
     this._mounted = true;
     window.addEventListener('resize', this.metricsUpdated);
     if (this.props.cellRangeSelection) {
-      window.addEventListener('mouseup', this.onWindowMouseUp);
+      // document.querySelector('.react-grid-Grid')
+     window.addEventListener('mouseup', this.onWindowMouseUp);
     }
     this.metricsUpdated();
   }
@@ -269,7 +270,7 @@ class ReactDataGrid extends React.Component {
   componentWillUnmount() {
     this._mounted = false;
     window.removeEventListener('resize', this.metricsUpdated);
-    window.removeEventListener('mouseup', this.onWindowMouseUp);
+   window.removeEventListener('mouseup', this.onWindowMouseUp);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -287,7 +288,10 @@ class ReactDataGrid extends React.Component {
   };
 
   selectStart = (cellPosition) => {
-    this.eventBus.dispatch(EventTypes.SELECT_START, cellPosition);
+    this.setState(
+      {areCellsSelected: true},
+      () => this.eventBus.dispatch(EventTypes.SELECT_START, cellPosition)
+    );
   };
 
   selectUpdate = (cellPosition) => {
@@ -295,7 +299,10 @@ class ReactDataGrid extends React.Component {
   };
 
   selectEnd = () => {
-    this.eventBus.dispatch(EventTypes.SELECT_END);
+    this.setState(
+      {areCellsSelected: false},
+      () => this.eventBus.dispatch(EventTypes.SELECT_END)
+    );
   };
 
   handleDragEnter = ({ overRowIdx }) => {
@@ -423,7 +430,9 @@ class ReactDataGrid extends React.Component {
   };
 
   onWindowMouseUp = () => {
-    this.selectEnd();
+    if (this.state.areCellsSelected) {
+      this.selectEnd();
+    }
   };
 
   onCellContextMenu = ({ rowIdx, idx }) => {
