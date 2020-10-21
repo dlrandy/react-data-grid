@@ -1,18 +1,18 @@
-# react-data-grid
+# react-data-grid-6-revision
 
-> The core of react-data-grid
+> The core of react-data-grid-6-revision
 
 
 ## Install
 
 ```sh
-npm install --save react-data-grid
+npm install --save react-data-grid-6-revision
 ```
 
 ## Usage
 
 ```sh
-import ReactDataGrid from 'react-data-grid';
+import ReactDataGrid from 'react-data-grid-6-revision';
 
 const columns = [{ key: 'id', name: 'ID' }, { key: 'title', name: 'Title' }];
 const rows = [{ id: 1, title: 'Title 1' }, ...];
