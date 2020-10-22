@@ -15,7 +15,7 @@ const replacePackageEntry = () => {
     getPathToPackageEntry(),
     entryData,
     (err) => {
-      if (err) throw new Error(errr);
+      if (err) throw new Error(err);
       const env = publish ? 'publish' : 'dev';
       console.log(` --- ${packageName} entry point was overriden to ${env}`);
     }
